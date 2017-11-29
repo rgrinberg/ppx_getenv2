@@ -1,0 +1,26 @@
+(jbuild_version 1)
+
+(executable
+ ((name test)
+  (modules (test))
+  (preprocess (pps (ppx_getenv2)))))
+
+(executable
+ ((name pp)
+  (modules (pp))
+  (libraries (ppx_getenv2 ppx_driver))))
+
+(rule
+ ((targets (test.result))
+  (deps (test.ml))
+  (action (run ./pp.exe --impl ${<} -o ${@}))))
+
+(alias
+ ((name runtest)
+  (deps (test.result test.expected))
+  (action (run diff -dEbBt test.result test.expected))))
+
+(alias
+ ((name runtest)
+  (deps (test.exe))
+  (action (run ${<}))))

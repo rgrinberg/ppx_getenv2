@@ -1,0 +1,13 @@
+let () =
+  match match Sys.getenv "PATH" with
+        | s -> Some s
+        | exception Not_found  -> None
+  with
+  | None  -> assert false
+  | Some _ -> () 
+let () =
+  assert
+    ((match Sys.getenv "DOES_NOT_EXIST" with
+      | s -> Some s
+      | exception Not_found  -> None) = None)
+  
