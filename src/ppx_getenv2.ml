@@ -3,12 +3,9 @@ open Ppx_core
 let name = "getenv"
 
 let expand ~loc ~path:_ (env : string) =
-  let env = Ast_builder.Default.estring env ~loc in
-  [%expr
-    match Sys.getenv [%e env] with
-    | s -> Some s
-    | exception Not_found -> None
-  ]
+  match Caml.Sys.getenv env with
+  | s -> [%expr Some ([%e Ast_builder.Default.estring s ~loc])]
+  | exception Not_found -> [%expr None]
 
 let ext =
   Extension.declare

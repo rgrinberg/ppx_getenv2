@@ -13,7 +13,7 @@
 (rule
  ((targets (test.result))
   (deps (test.ml))
-  (action (run ./pp.exe --impl ${<} -o ${@}))))
+  (action (setenv PPX_GETENV2 foobar (run ./pp.exe --impl ${<} -o ${@})))))
 
 (alias
  ((name runtest)
