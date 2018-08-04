@@ -1,2 +1,0 @@
-let () = match Some "foobar" with | None  -> () | Some _ -> () 
-let () = assert (None = None) 

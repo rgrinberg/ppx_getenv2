@@ -1,0 +1,18 @@
+(executable
+ (name pp)
+ (modules pp)
+ (libraries ppx_getenv2 ppxlib))
+
+(rule
+ (targets pp.result)
+ (deps test.ml)
+ (action (setenv PPX_GETENV2 foobar (run ./pp.exe --impl %{deps} -o %{targets}))))
+
+(alias
+ (name runtest)
+ (action (diff pp.expected pp.result)))
+
+(test
+ (name test)
+ (modules test)
+ (preprocess (pps ppx_getenv2)))

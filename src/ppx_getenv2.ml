@@ -1,4 +1,4 @@
-open Ppx_core
+open Ppxlib
 
 let name = "getenv"
 
@@ -14,4 +14,4 @@ let ext =
     Ast_pattern.(single_expr_payload (estring __))
     expand
 
-let () = Ppx_driver.register_transformation name ~extensions:[ext]
+let () = Ppxlib.Driver.register_transformation name ~extensions:[ext]

@@ -1,9 +1,0 @@
-(jbuild_version 1)
-
-(library
- ((name ppx_getenv2)
-  (public_name ppx_getenv2)
-  (wrapped false)
-  (kind ppx_rewriter)
-  (libraries (ppx_core ppx_driver))
-  (preprocess (pps (ppx_metaquot)))))
