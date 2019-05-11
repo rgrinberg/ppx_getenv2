@@ -1,2 +1,2 @@
 (lang dune 1.0)
-(name ppxlib)
+(name ppx_getenv2)
